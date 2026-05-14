@@ -1,0 +1,89 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 0. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+    function isSignedIn() { return request.auth != null; }
+    function isEmailVerified() { return request.auth.token.email_verified == true; }
+    function isAdmin() {
+      return isSignedIn() && (
+        request.auth.uid == 'srSSCJ5qzFfuBgzkuLqcVzv23Re2' ||
+        request.auth.token.email == 'asmaharg1139@gmail.com' ||
+        request.auth.token.email == 'manishmahar17205@gmail.com' ||
+        (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
+         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin')
+      );
+    }
+
+    // 1. Connection Test (For connectivity check)
+    match /test/connection {
+      allow get: if true;
+    }
+
+    // 2. Tour Packages
+    // Public can read, only admin can write
+    match /packages/{packageId} {
+      allow get, list: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // 3. Bookings
+    match /bookings/{bookingId} {
+      function isValidBooking(data) {
+        return data.fullName is string && data.fullName.size() <= 100 &&
+               data.email is string && data.email.size() <= 100 &&
+               data.phone is string && data.phone.size() <= 20 &&
+               data.packageId is string &&
+               data.packageName is string &&
+               data.travelers is number && data.travelers > 0 &&
+               data.travelDate is string &&
+               data.status in ['pending', 'confirmed', 'cancelled'] &&
+               (data.get('specialRequests', '') is string) &&
+               data.createdAt is timestamp;
+      }
+      
+      allow create: if isValidId(bookingId) && isValidBooking(incoming()) && incoming().status == 'pending';
+      allow get, list, update, delete: if isAdmin();
+    }
+
+    // 4. Enquiries
+    match /enquiries/{enquiryId} {
+      function isValidEnquiry(data) {
+        return data.get('name', '') is string && data.get('name', '').size() <= 100 &&
+               data.get('mobile', '') is string && data.get('mobile', '').size() <= 20 &&
+               data.get('message', '') is string && data.get('message', '').size() <= 1000 &&
+               (data.get('destination', '') is string) &&
+               data.createdAt is timestamp;
+      }
+      
+      allow create: if isValidId(enquiryId) && isValidEnquiry(incoming());
+      allow get, list, update, delete: if isAdmin();
+    }
+
+    // 5. Users (Admin Profiles)
+    match /users/admin_bootstrap_locked {
+      allow get: if true;
+      allow write: if isSignedIn();
+    }
+
+    match /users/{userId} {
+      allow get: if isSignedIn();
+      allow list: if isAdmin();
+
+      allow create: if isSignedIn() && (
+        (request.auth.uid == userId && incoming().role == 'admin') ||
+        isAdmin()
+      );
+      allow update, delete: if isAdmin();
+    }
+  }
+}

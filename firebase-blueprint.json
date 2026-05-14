@@ -1,0 +1,83 @@
+{
+  "entities": {
+    "TourPackage": {
+      "title": "Tour Package",
+      "description": "Details about a tour package to Adi Kailash or Om Parvat",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "duration": { "type": "string" },
+        "price": { "type": "number" },
+        "includes": { "type": "array" },
+        "itinerary": { "type": "array" },
+        "image": { "type": "string" },
+        "category": { "type": "string" }
+      },
+      "required": ["title", "duration", "price", "image"]
+    },
+    "Booking": {
+      "title": "Booking",
+      "description": "A tour booking entry",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "packageId": { "type": "string" },
+        "packageName": { "type": "string" },
+        "fullName": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "travelers": { "type": "number" },
+        "travelDate": { "type": "string" },
+        "specialRequests": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "confirmed", "cancelled"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["fullName", "email", "phone", "packageId", "travelers", "travelDate"]
+    },
+    "Enquiry": {
+      "title": "Enquiry",
+      "description": "A quick enquiry from a user",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "mobile": { "type": "string" },
+        "message": { "type": "string" },
+        "destination": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "mobile", "message"]
+    },
+    "User": {
+      "title": "User",
+      "description": "Admin user details",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin"] }
+      },
+      "required": ["uid", "email", "role"]
+    }
+  },
+  "firestore": {
+    "/packages/{packageId}": {
+      "schema": "TourPackage",
+      "description": "Collection of tour packages"
+    },
+    "/bookings/{bookingId}": {
+      "schema": "Booking",
+      "description": "Collection of tour bookings"
+    },
+    "/enquiries/{enquiryId}": {
+      "schema": "Enquiry",
+      "description": "Collection of user enquiries"
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Admin user profiles"
+    }
+  }
+}

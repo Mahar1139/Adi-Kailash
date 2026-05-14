@@ -1,0 +1,6 @@
+{
+  "name": "Adi Kailash Tour & Travel",
+  "description": "Modern spiritual tourism website for Adi Kailash and Om Parvat pilgrimages. Features packages, bookings, and an admin dashboard.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": []
+}
