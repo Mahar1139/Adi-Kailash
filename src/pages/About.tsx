@@ -50,7 +50,7 @@ export default function About() {
           >
             <div className="relative w-full rounded-[3rem] overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]">
               <img 
-                src="./public/images/about.jpg" 
+                src="/images/about.jpg" 
                 alt="Mountain View" 
                 className="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-110"
               />
