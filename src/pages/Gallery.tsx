@@ -3,14 +3,14 @@ import { useState } from "react";
 import { X, Maximize2 } from "lucide-react";
 
 const IMAGES = [
-  { id: 1, src: "./public/images/img1.jpg", title: "Adi Kailash Peak", category: "Sacred Peaks" },
-  { id: 2, src: "./public/images/img5.jpg", title: "Panchachuli Range", category: "Landscape" },
+  { id: 1, src: "/images/img1.jpg", title: "Adi Kailash Peak", category: "Sacred Peaks" },
+  { id: 2, src: "/images/img5.jpg", title: "Panchachuli Range", category: "Landscape" },
   { id: 3, src: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?q=80&w=1200", title: "Om Parvat", category: "Divine Signs" },
   { id: 4, src: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=1200", title: "Snow View", category: "Architecture" },
-  { id: 5, src: "./public/images/img2.jpg", title: "OM Parvat", category: "Culture" },
-  { id: 6, src: "./public/images/img3.jpg", title: "Kali River Valley", category: "Landscape" },
-  { id: 7, src: "./public/images/img4.jpeg", title: "Evening View", category: "Spiritual" },
-  { id: 8, src: "./public/images/img6.jpeg", title: "Local Prayer Flags", category: "Culture" },
+  { id: 5, src: "/images/img2.jpg", title: "OM Parvat", category: "Culture" },
+  { id: 6, src: "/images/img3.jpg", title: "Kali River Valley", category: "Landscape" },
+  { id: 7, src: "/images/img4.jpeg", title: "Evening View", category: "Spiritual" },
+  { id: 8, src: "/images/img6.jpeg", title: "Local Prayer Flags", category: "Culture" },
   { id: 9, src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200", title: "Snowy Pass", category: "Adventure" },
   { id: 10, src: "https://images.unsplash.com/photo-1549880338-65ddcdfd017b?q=80&w=1200", title: "Mountain Reflection", category: "Nature" },
 ];
