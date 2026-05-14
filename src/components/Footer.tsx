@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin, Facebook, Instagram, Twitter } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Instagram, Twitter, Compass } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -7,9 +7,20 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-16">
           <div className="col-span-1 md:col-span-1">
-            <h3 className="font-serif text-2xl font-bold mb-6 text-white">
-              Adi Kailash <span className="text-primary italic">Tour & Travel</span>
-            </h3>
+            <div className="flex items-center gap-3 mb-6 group">
+              <div className="relative w-12 h-12 bg-gradient-to-br from-primary to-orange-500 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-red-500/30 overflow-hidden">
+                <div className="absolute inset-0 bg-white/20 backdrop-blur-sm -rotate-45 translate-x-full group-hover:translate-x-[-100%] transition-transform duration-700 ease-in-out"></div>
+                <Compass size={24} strokeWidth={2.5} className="group-hover:rotate-[360deg] transition-transform duration-700 ease-in-out" />
+              </div>
+              <div className="flex flex-col">
+                <span className="font-serif text-xl font-bold tracking-tight text-white leading-none">
+                  Adi-Kailash
+                </span>
+                <span className="text-[10px] uppercase font-black tracking-[0.25em] text-primary mt-1">
+                  Tours
+                </span>
+              </div>
+            </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-8 font-light">
               Experience the divine beauty of the Kumaon Himalayas. Facilitating sacred pilgrimages with safety and devotion since 2012.
             </p>
@@ -64,7 +75,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-500 font-bold uppercase tracking-[0.2em]">
-          <p>© 2026 Adi Kailash Tour & Travel.</p>
+          <p>© 2026 Adi-Kailash Tours.</p>
           <div className="flex gap-10 mt-6 md:mt-0">
             <Link to="/admin/login" className="hover:text-primary">Admin</Link>
             <a href="#" className="hover:text-primary">Privacy</a>

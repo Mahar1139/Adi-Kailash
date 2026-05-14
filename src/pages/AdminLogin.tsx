@@ -27,7 +27,7 @@ export default function AdminLogin() {
         // If user doesn't exist and matches the bootstrap credentials, create it
         if ((err.code === 'auth/user-not-found' || err.code === 'auth/invalid-credential') && 
             email === "asmaharg1139@gmail.com" && 
-            password === "Admin@123") {
+            password === "@Admin@Pagal#Pagal") {
           
           const result = await createUserWithEmailAndPassword(auth, email, password);
           userAuth = result.user;
@@ -145,7 +145,7 @@ export default function AdminLogin() {
         </form>
 
         <div className="mt-12 pt-8 border-t border-slate-50">
-          <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest leading-relaxed text-center">Adi Kailash Tour & Travel Portal</p>
+          <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest leading-relaxed text-center">Adi-Kailash Tours Portal</p>
         </div>
       </motion.div>
     </div>

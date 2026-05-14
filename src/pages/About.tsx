@@ -35,7 +35,7 @@ export default function About() {
             </h2>
             <div className="space-y-6 text-gray-500 text-lg font-light leading-relaxed">
               <p>
-                Founded in the heart of Dharchula, Adi Kailash Tour & Travel was born from a deep love for our mountains and a mission to make sacred pilgrimages accessible and safe for everyone.
+                Founded in the heart of Dharchula, Adi-Kailash Tours was born from a deep love for our mountains and a mission to make sacred pilgrimages accessible and safe for everyone.
               </p>
               <p>
                 As a licensed operator by the UK Tourism Board, we prioritize safety above all else, ensuring every pilgrim experiences the divine silence of the Himalayas without compromise.
@@ -91,7 +91,7 @@ export default function About() {
           <h2 className="text-3xl font-bold font-serif italic mb-8 leading-relaxed">"Our aim is not just to take you to the mountains, but to help you find the mountain within yourself."</h2>
           <div className="space-y-1">
             <p className="font-bold text-mountain-dark uppercase tracking-widest text-xs">Amit Mahar</p>
-            <p className="text-gray-400 text-[10px] uppercase tracking-widest">Founder, Adi Kailash Tour & Travel</p>
+            <p className="text-gray-400 text-[10px] uppercase tracking-widest">Founder, Adi-Kailash Tours</p>
           </div>
         </div>
       </div>
