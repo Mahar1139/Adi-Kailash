@@ -8,10 +8,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-16">
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center gap-3 mb-6 group">
-              <div className="relative w-12 h-12 bg-gradient-to-br from-primary to-orange-500 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-red-500/30 overflow-hidden">
-                <div className="absolute inset-0 bg-white/20 backdrop-blur-sm -rotate-45 translate-x-full group-hover:translate-x-[-100%] transition-transform duration-700 ease-in-out"></div>
-                <Compass size={24} strokeWidth={2.5} className="group-hover:rotate-[360deg] transition-transform duration-700 ease-in-out" />
-              </div>
+              <img src="/logo.svg" alt="Adi-Kailash Logo" className="w-12 h-12 rounded-full shadow-lg shadow-black/20" />
               <div className="flex flex-col">
                 <span className="font-serif text-xl font-bold tracking-tight text-white leading-none">
                   Adi-Kailash

@@ -40,10 +40,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="relative w-12 h-12 bg-gradient-to-br from-primary to-orange-500 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-red-500/30 overflow-hidden">
-              <div className="absolute inset-0 bg-white/20 backdrop-blur-sm -rotate-45 translate-x-full group-hover:translate-x-[-100%] transition-transform duration-700 ease-in-out"></div>
-              <Compass size={24} strokeWidth={2.5} className="group-hover:rotate-[360deg] transition-transform duration-700 ease-in-out" />
-            </div>
+            <img src="/logo.svg" alt="Adi-Kailash Logo" className="w-12 h-12 rounded-full shadow-lg shadow-black/10 transition-transform duration-300 group-hover:scale-105" />
             <div className="flex flex-col">
               <span className="font-serif text-xl font-bold tracking-tight text-mountain-dark leading-none">
                 Adi-Kailash
