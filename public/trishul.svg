@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+  </defs>
+  <g transform="rotate(-45 16 16) translate(0, 2)">
+    <!-- Main stem -->
+    <line x1="16" y1="4" x2="16" y2="28" stroke="url(#g)" stroke-width="2" stroke-linecap="round"/>
+    <!-- Center tip -->
+    <polygon points="16,0 13,6 19,6" fill="url(#g)" />
+    
+    <!-- U shape for side prongs -->
+    <path d="M 8 8 C 8 17 24 17 24 8" fill="none" stroke="url(#g)" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- Left tip -->
+    <polygon points="8,4 5.5,9 10.5,9" fill="url(#g)" />
+    
+    <!-- Right tip -->
+    <polygon points="24,4 21.5,9 26.5,9" fill="url(#g)" />
+    
+    <!-- Small damru on the handle -->
+    <path d="M 12 18 L 20 18 L 12 24 L 20 24 Z" fill="#dc2626" stroke="#991b1b" stroke-width="1"/>
+    
+    <!-- Red cloth/ribbon -->
+    <path d="M 16 21 C 22 21 24 26 28 26" fill="none" stroke="#ef4444" stroke-width="1.5"/>
+  </g>
+</svg>

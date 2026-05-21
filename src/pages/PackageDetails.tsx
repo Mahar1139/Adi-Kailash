@@ -8,6 +8,7 @@ import { addDoc, collection, doc, onSnapshot, serverTimestamp } from "firebase/f
 import { db, OperationType, handleFirestoreError } from "../lib/firebase";
 import { TourPackage } from "../types";
 import { SAMPLE_PACKAGES } from "../lib/data";
+import Tilt from "react-parallax-tilt";
 
 export default function PackageDetails() {
   const { id } = useParams();
@@ -220,61 +221,65 @@ export default function PackageDetails() {
           {/* Sidebar / Booking Form */}
           <div className="lg:col-span-1">
             <div className="sticky top-32">
-              <div className="bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden">
-                <div className="bg-mountain-dark p-10 text-white">
-                  <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Total package price</p>
-                  <div className="flex items-baseline gap-2">
-                    <h2 className="text-5xl font-black uppercase tracking-tighter">{formatCurrency(pkg.price)}</h2>
-                    <span className="text-gray-400 font-bold text-[10px] uppercase">/ Person</span>
-                  </div>
-                </div>
-                
-                <form onSubmit={handleBookingSubmit} className="p-10 space-y-8">
-                  <div>
-                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 block">Full Name</label>
-                    <div className="relative">
-                      <input name="fullName" type="text" required placeholder="John Doe" className="input-field pl-12" />
-                      <Users className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300" size={18} />
+              <Tilt tiltMaxAngleX={4} tiltMaxAngleY={4} perspective={2000} scale={1.01} transitionSpeed={2500} glareEnable={true} glareMaxOpacity={0.1} glarePosition="all" trackOnWindow={true}>
+                <div className="bg-white rounded-[2rem] shadow-2xl border border-slate-100 overflow-hidden transform-style-3d">
+                  <div className="bg-mountain-dark p-10 text-white transform translate-z-[10px]">
+                    <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Total package price</p>
+                    <div className="flex items-baseline gap-2">
+                      <h2 className="text-5xl font-black uppercase tracking-tighter">{formatCurrency(pkg.price)}</h2>
+                      <span className="text-gray-400 font-bold text-[10px] uppercase">/ Person</span>
                     </div>
-                  </div>
-                  <div className="grid grid-cols-1 gap-8">
-                    <div>
-                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 block">Email Address</label>
-                      <input name="email" type="email" required placeholder="john@email.com" className="input-field" />
-                    </div>
-                    <div>
-                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 block">Phone Number</label>
-                      <input name="phone" type="tel" required placeholder="+91" className="input-field" />
-                    </div>
-                  </div>
-                  <div>
-                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 block">Travel Date</label>
-                    <input name="travelDate" type="date" required className="input-field" />
-                  </div>
-                  <div>
-                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 block">Preferred Travelers</label>
-                    <input name="travelers" type="number" required min="1" max="20" defaultValue="1" className="input-field" />
                   </div>
                   
-                  <button 
-                    disabled={isSubmitting}
-                    className="w-full bg-primary text-white py-6 rounded-md font-black shadow-xl hover:bg-red-700 hover:scale-[1.02] transition-all flex items-center justify-center gap-3 disabled:bg-gray-200 disabled:text-gray-400 uppercase tracking-[0.2em] text-xs"
-                  >
-                    {isSubmitting ? "Processing..." : "Confirm Booking Enquiry"}
-                  </button>
-                  <p className="text-[10px] text-center text-gray-400 font-bold uppercase tracking-widest leading-relaxed">No payment required. Our team will contact you for verification.</p>
-                </form>
-              </div>
+                  <form onSubmit={handleBookingSubmit} className="p-10 space-y-8 transform translate-z-[20px] bg-white">
+                    <div>
+                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 block">Full Name</label>
+                      <div className="relative">
+                        <input name="fullName" type="text" required placeholder="John Doe" className="input-field pl-12 shadow-inner" />
+                        <Users className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300" size={18} />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-1 gap-8">
+                      <div>
+                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 block">Email Address</label>
+                        <input name="email" type="email" required placeholder="john@email.com" className="input-field shadow-inner" />
+                      </div>
+                      <div>
+                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 block">Phone Number</label>
+                        <input name="phone" type="tel" required placeholder="+91" className="input-field shadow-inner" />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 block">Travel Date</label>
+                      <input name="travelDate" type="date" required className="input-field shadow-inner" />
+                    </div>
+                    <div>
+                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3 block">Preferred Travelers</label>
+                      <input name="travelers" type="number" required min="1" max="20" defaultValue="1" className="input-field shadow-inner" />
+                    </div>
+                    
+                    <button 
+                      disabled={isSubmitting}
+                      className="w-full bg-primary text-white py-6 rounded-2xl font-black shadow-xl shadow-red-500/20 hover:bg-red-700 hover:scale-[1.02] transform transition-all flex items-center justify-center gap-3 disabled:bg-gray-200 disabled:text-gray-400 uppercase tracking-[0.2em] text-xs translate-z-[10px]"
+                    >
+                      {isSubmitting ? "Processing..." : "Confirm Booking Enquiry"}
+                    </button>
+                    <p className="text-[10px] text-center text-gray-400 font-bold uppercase tracking-widest leading-relaxed">No payment required. Our team will contact you for verification.</p>
+                  </form>
+                </div>
+              </Tilt>
 
-              <div className="mt-8 p-8 bg-slate-900 rounded-xl flex items-center gap-6 text-white border border-slate-800 shadow-xl">
-                <div className="w-14 h-14 bg-white/10 rounded-full flex items-center justify-center border border-white/10">
-                  <MessageSquare size={24} className="text-primary" />
+              <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} perspective={1000} scale={1.02} transitionSpeed={1000}>
+                <div className="mt-8 p-8 bg-slate-900 rounded-[2rem] flex items-center gap-6 text-white border border-slate-800 shadow-[0_20px_40px_-5px_rgba(0,0,0,0.4)] transform-style-3d">
+                  <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center border border-white/10 transform translate-z-[30px] shadow-lg">
+                    <MessageSquare size={24} className="text-primary" />
+                  </div>
+                  <div className="transform translate-z-[20px]">
+                    <h4 className="font-black text-sm uppercase tracking-tight">Need assistance?</h4>
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Talk to an expert at +91 9876543210</p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-black text-sm uppercase tracking-tight">Need assistance?</h4>
-                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Talk to an expert at +91 9876543210</p>
-                </div>
-              </div>
+              </Tilt>
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { Shield, Users, Leaf, Calendar, Heart, Award } from "lucide-react";
+import Tilt from "react-parallax-tilt";
 
 const VALUES = [
   { title: "Safe Journey", desc: "Your safety is our top priority with high-altitude ready logistics.", icon: Shield },
@@ -42,44 +43,47 @@ export default function About() {
               </p>
             </div>
           </motion.div>
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }} 
-            whileInView={{ opacity: 1, scale: 1 }} 
-            viewport={{ once: true }}
-            className="relative group curso-pointer"
-          >
-            <div className="relative w-full rounded-[3rem] overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]">
-              <img 
-                src="/images/about.jpg" 
-                alt="Mountain View" 
-                className="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </div>
-            <div className="absolute -bottom-10 -right-10 bg-primary text-white p-10 rounded-[2rem] shadow-xl hidden lg:block transition-transform duration-500 group-hover:translate-x-2 group-hover:-translate-y-2">
-              <p className="text-5xl font-bold mb-1 font-serif">12+</p>
-              <p className="text-xs font-bold uppercase tracking-widest">Years Excellence</p>
-            </div>
-          </motion.div>
+          <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} perspective={1000} scale={1.02} transitionSpeed={2000}>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }} 
+              whileInView={{ opacity: 1, scale: 1 }} 
+              viewport={{ once: true }}
+              className="relative group cursor-pointer transform-style-3d"
+            >
+              <div className="relative w-full rounded-[3rem] overflow-hidden shadow-2xl transition-transform duration-700 bg-white p-2">
+                <img 
+                  src="/images/about.jpg" 
+                  alt="Mountain View" 
+                  className="w-full h-[500px] object-cover rounded-[2.5rem] transition-transform duration-700 group-hover:scale-110 relative z-0"
+                />
+                <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2.5rem]" />
+              </div>
+              <div className="absolute -bottom-10 -right-10 bg-primary text-white p-10 rounded-[2rem] shadow-2xl hidden lg:block transition-transform duration-500 transform translate-z-[60px] group-hover:scale-105 group-hover:shadow-[0_20px_40px_rgba(245,158,11,0.4)]">
+                <p className="text-5xl font-bold mb-1 font-serif drop-shadow-md">12+</p>
+                <p className="text-xs font-bold uppercase tracking-widest text-primary-100">Years Excellence</p>
+              </div>
+            </motion.div>
+          </Tilt>
         </div>
 
         {/* Values Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {VALUES.map((val, idx) => (
-            <motion.div 
-              key={idx} 
-              initial={{ opacity: 0, y: 20 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
-              transition={{ delay: idx * 0.1 }} 
-              viewport={{ once: true }}
-              className="p-12 card-white group hover:-translate-y-2 transition-all duration-500"
-            >
-              <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform">
-                <val.icon size={28} />
-              </div>
-              <h3 className="text-2xl font-bold mb-4 font-serif">{val.title}</h3>
-              <p className="text-gray-500 font-light text-sm leading-relaxed">{val.desc}</p>
-            </motion.div>
+            <Tilt key={idx} tiltMaxAngleX={15} tiltMaxAngleY={15} perspective={1000} glareEnable={true} glareMaxOpacity={0.15} glarePosition="all" scale={1.05} transitionSpeed={1200}>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                transition={{ delay: idx * 0.1 }} 
+                viewport={{ once: true }}
+                className="p-12 card-white group hover:-translate-y-2 transition-all duration-500 h-full transform-style-3d bg-white/90 backdrop-blur-md"
+              >
+                <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-8 transition-transform duration-500 transform translate-z-[30px] group-hover:bg-primary group-hover:text-white shadow-inner shadow-primary/20">
+                  <val.icon size={28} />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 font-serif transform translate-z-[40px] drop-shadow-sm">{val.title}</h3>
+                <p className="text-gray-500 font-light text-sm leading-relaxed transform translate-z-[20px]">{val.desc}</p>
+              </motion.div>
+            </Tilt>
           ))}
         </div>
 

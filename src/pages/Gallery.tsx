@@ -1,18 +1,15 @@
 import { motion } from "motion/react";
 import { useState } from "react";
 import { X, Maximize2 } from "lucide-react";
+import Tilt from "react-parallax-tilt";
 
 const IMAGES = [
   { id: 1, src: "/images/img1.jpg", title: "Adi Kailash Peak", category: "Sacred Peaks" },
-  { id: 2, src: "/images/img5.jpg", title: "Panchachuli Range", category: "Landscape" },
-  { id: 3, src: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?q=80&w=1200", title: "Om Parvat", category: "Divine Signs" },
-  { id: 4, src: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=1200", title: "Snow View", category: "Architecture" },
-  { id: 5, src: "/images/img2.jpg", title: "OM Parvat", category: "Culture" },
-  { id: 6, src: "/images/img3.jpg", title: "Kali River Valley", category: "Landscape" },
-  { id: 7, src: "/images/img4.jpeg", title: "Evening View", category: "Spiritual" },
-  { id: 8, src: "/images/img6.jpeg", title: "Local Prayer Flags", category: "Culture" },
-  { id: 9, src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200", title: "Snowy Pass", category: "Adventure" },
-  { id: 10, src: "https://images.unsplash.com/photo-1549880338-65ddcdfd017b?q=80&w=1200", title: "Mountain Reflection", category: "Nature" },
+  { id: 2, src: "/images/img2.jpg", title: "Om Parvat", category: "Divine Signs" },
+  { id: 3, src: "/images/img3.jpg", title: "Kali River Valley", category: "Landscape" },
+  { id: 4, src: "/images/img4.jpeg", title: "Evening View", category: "Spiritual" },
+  { id: 5, src: "/images/img5.jpg", title: "Panchachuli Range", category: "Landscape" },
+  { id: 6, src: "/images/img6.jpeg", title: "Local Prayer Flags", category: "Culture" },
 ];
 
 export default function Gallery() {
@@ -37,28 +34,29 @@ export default function Gallery() {
 
         <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
           {IMAGES.map((img, idx) => (
-            <motion.div 
-              key={img.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: idx * 0.05 }}
-              viewport={{ once: true }}
-              className="relative group cursor-pointer overflow-hidden rounded-xl bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all"
-              onClick={() => setSelectedImg(img)}
-            >
-              <img 
-                src={img.src} 
-                alt={img.title} 
-                className="w-full h-auto transition-transform duration-1000 group-hover:scale-110" 
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
-                <div>
-                  <p className="text-white text-[10px] font-black uppercase tracking-widest mb-1">{img.category}</p>
-                  <p className="text-white text-lg font-black uppercase tracking-tight">{img.title}</p>
+            <Tilt key={img.id} glareEnable={true} glareMaxOpacity={0.4} glareColor="white" glarePosition="all" scale={1.02} tiltMaxAngleY={8} tiltMaxAngleX={8} transitionSpeed={1000} className="break-inside-avoid">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: idx * 0.05 }}
+                viewport={{ once: true }}
+                className="relative group cursor-pointer overflow-hidden rounded-[2rem] bg-white border border-slate-100 shadow-xl hover:shadow-[0_20px_40px_-10px_rgba(245,158,11,0.2)] transition-all transform-style-3d mb-8"
+                onClick={() => setSelectedImg(img)}
+              >
+                <img 
+                  src={img.src} 
+                  alt={img.title} 
+                  className="w-full h-auto transition-transform duration-1000 group-hover:scale-110 relative z-0" 
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-mountain-dark/90 via-mountain-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8 z-10">
+                  <div className="transform translate-z-[40px]">
+                    <p className="text-primary text-[10px] font-black uppercase tracking-widest mb-1 shadow-black drop-shadow-md">{img.category}</p>
+                    <p className="text-white text-2xl font-serif drop-shadow-lg">{img.title}</p>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </Tilt>
           ))}
         </div>
       </div>

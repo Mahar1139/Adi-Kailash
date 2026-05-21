@@ -6,6 +6,7 @@ import { Check, Clock, Users } from "lucide-react";
 import { TourPackage } from "../types";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db, handleFirestoreError, OperationType } from "../lib/firebase";
+import Tilt from "react-parallax-tilt";
 
 export default function Packages() {
   const [packages, setPackages] = useState<TourPackage[]>([]);
@@ -52,45 +53,47 @@ export default function Packages() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {packages.map((pkg, idx) => (
-              <motion.div
-                key={pkg.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                className="card-white flex flex-col h-full group"
-              >
-                <div className="relative h-80 overflow-hidden">
-                  <img src={pkg.image} alt={pkg.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                  <div className="absolute top-6 left-6 bg-primary text-white px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-lg">
-                    {pkg.category}
-                  </div>
-                </div>
-
-                <div className="p-12 flex-grow flex flex-col">
-                  <div className="mb-8 font-serif">
-                    <div className="flex items-center gap-2 text-primary text-[10px] font-bold uppercase tracking-widest mb-3 italic">
-                      <Clock size={12} /> {pkg.duration}
+              <Tilt key={pkg.id} tiltMaxAngleX={10} tiltMaxAngleY={10} perspective={1500} scale={1.02} transitionSpeed={1200} glareEnable={true} glareMaxOpacity={0.15} glarePosition="all" className="h-full">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="card-white flex flex-col h-full group transform-style-3d bg-white/80 backdrop-blur-sm"
+                >
+                  <div className="relative h-80 overflow-hidden transform translate-z-[10px]">
+                    <img src={pkg.image} alt={pkg.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                    <div className="absolute top-6 left-6 bg-primary text-white px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-lg">
+                      {pkg.category}
                     </div>
-                    <h2 className="text-3xl font-bold text-mountain-dark mb-4">{pkg.title}</h2>
-                    <p className="text-gray-500 font-light leading-relaxed line-clamp-3 text-sm">
-                      {pkg.description}
-                    </p>
                   </div>
 
-                  <div className="mt-auto pt-10 border-t border-slate-50 flex items-center justify-between">
-                    <div>
-                      <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Starting from</p>
-                      <p className="text-3xl font-bold text-mountain-dark font-serif">{formatCurrency(pkg.price)}</p>
+                  <div className="p-12 flex-grow flex flex-col transform translate-z-[20px] bg-white rounded-b-[2.5rem]">
+                    <div className="mb-8 font-serif">
+                      <div className="flex items-center gap-2 text-primary text-[10px] font-bold uppercase tracking-widest mb-3 italic">
+                        <Clock size={12} /> {pkg.duration}
+                      </div>
+                      <h2 className="text-3xl font-bold text-mountain-dark mb-4 drop-shadow-sm">{pkg.title}</h2>
+                      <p className="text-gray-500 font-light leading-relaxed line-clamp-3 text-sm">
+                        {pkg.description}
+                      </p>
                     </div>
-                    <Link 
-                      to={`/package/${pkg.id}`} 
-                      className="btn-primary w-14 h-14 !px-0 flex items-center justify-center rounded-2xl shadow-xl shadow-red-500/10"
-                    >
-                      <ArrowRightNav size={20} />
-                    </Link>
+
+                    <div className="mt-auto pt-10 border-t border-slate-50 flex items-center justify-between">
+                      <div>
+                        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Starting from</p>
+                        <p className="text-3xl font-bold text-mountain-dark font-serif">{formatCurrency(pkg.price)}</p>
+                      </div>
+                      <Link 
+                        to={`/package/${pkg.id}`} 
+                        className="btn-primary w-14 h-14 !px-0 flex items-center justify-center rounded-2xl shadow-xl shadow-red-500/10 hover:shadow-red-500/30 transition-all z-20 relative"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <ArrowRightNav size={20} />
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </Tilt>
             ))}
           </div>
         )}

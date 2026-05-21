@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g transform="rotate(-45 16 16) translate(0, 2)" filter="url(#glow)">
+    <!-- Main stem -->
+    <line x1="16" y1="4" x2="16" y2="28" stroke="url(#g)" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Center tip -->
+    <polygon points="16,-1 12,6 20,6" fill="url(#g)" />
+    
+    <!-- U shape for side prongs -->
+    <path d="M 8 8 C 8 17 24 17 24 8" fill="none" stroke="url(#g)" stroke-width="2.5" stroke-linecap="round"/>
+    
+    <!-- Left tip -->
+    <polygon points="8,3 5,9 11,9" fill="url(#g)" />
+    
+    <!-- Right tip -->
+    <polygon points="24,3 19,9 29,9" fill="url(#g)" />
+    
+    <!-- Small damru on the handle -->
+    <path d="M 12 18 L 20 18 L 12 24 L 20 24 Z" fill="#ef4444" stroke="#991b1b" stroke-width="1"/>
+    
+    <!-- Red cloth/ribbon -->
+    <path d="M 16 21 C 24 21 26 28 32 28" fill="none" stroke="#ef4444" stroke-width="2"/>
+  </g>
+</svg>
